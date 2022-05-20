@@ -49,6 +49,9 @@ jobs:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           targetPlatform: WebGL
+      # Content List
+      - name: ls
+        run: ls *
           
       # Output
       - uses: actions/upload-artifact@v2
