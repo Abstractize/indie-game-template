@@ -51,7 +51,10 @@ jobs:
           targetPlatform: WebGL
       # Content List
       - name: ls
-        run: ls /build/WebGL/
+        run: ls /build/
+        
+      - name: ls intern
+        run: ls /build/*
           
       # Output
       - uses: actions/upload-artifact@v2
