@@ -30,16 +30,6 @@ jobs:
           restore-keys: |
             Library-
 
-      # Test
-      #- name: Run tests
-      #  uses: game-ci/unity-test-runner@v2
-      #  env:
-      #    UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-      #    UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-      #    UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
-      #  with:
-      #    githubToken: ${{ secrets.GITHUB_TOKEN }}
-
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v2
@@ -78,11 +68,6 @@ jobs:
           api_location: "" # Api source code path - optional
           output_location: "build/WebGL/WebGL/" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
-
-      # Return License
-      - name: Return license
-        uses: game-ci/unity-return-license@v1
-        if: always()
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
