@@ -51,7 +51,7 @@ jobs:
           targetPlatform: WebGL
       # Content List
       - name: ls
-        run: ls build
+        run: ls /build/WebGL/
           
       # Output
       - uses: actions/upload-artifact@v2
@@ -71,7 +71,7 @@ jobs:
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
-          output_location: "/build/WebGL" # Built app content directory - optional
+          output_location: "/build/WebGL/" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
       # Return License
