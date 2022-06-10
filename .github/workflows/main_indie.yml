@@ -39,9 +39,14 @@ jobs:
                   UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
               with:
                   targetPlatform: WebGL
+
             # Copy Web Config
-            - name: copy Web Config File
-              run: cp web.config build/WebGL/WebGL
+            - name: Copy Web Config File
+              uses: canastro/copy-file-action@master
+              with:
+                  source: "web.config"
+                  target: "build/WebGL/WebGL/web.config "
+
             - run: ls build/WebGL/WebGL
 
             # Output
