@@ -39,6 +39,10 @@ jobs:
                   UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
               with:
                   targetPlatform: WebGL
+            # Copy Web Config
+            - name: copy Web Config File
+              run: cp web.config build/WebGL/WebGL
+            - run: ls build/WebGL/WebGL
 
             # Output
             - uses: actions/upload-artifact@v2

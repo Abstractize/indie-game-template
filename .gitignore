@@ -5,8 +5,8 @@
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
-/[Bb]uild/*
-/[Bb]uilds/*
+/[Bb]uild/
+/[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 /[Uu]serSettings/
@@ -62,7 +62,3 @@ crashlytics-build.properties
 # Environment Variables
 
 **/**.env
-
-# Web Config
-!/[Bb]uild/web.config
-!/[Bb]uilds/web.config
