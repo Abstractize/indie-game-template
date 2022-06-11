@@ -38,12 +38,6 @@ jobs:
                   UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
               with:
                   targetPlatform: WebGL
-            # Content List
-            - name: ls
-              run: ls build/WebGL/WebGL/
-
-            - name: pwd
-              run: pwd
 
             # Output
             - uses: actions/upload-artifact@v2
