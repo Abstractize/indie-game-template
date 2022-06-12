@@ -4,9 +4,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(AudioSource))]
 public class GameTimer : MonoBehaviour
 {
     [Header("Time Settings")]
+    [SerializeField]
+    AudioSource MusicSource;
     [SerializeField]
     [Range(1, 59)]
     private int IntervalDisplay = 15;
@@ -18,41 +21,42 @@ public class GameTimer : MonoBehaviour
     private int UserTimerDuration = 12;
     [Header("GUI Settings")]
     [SerializeField]
-    TextMeshProUGUI text;
-    [Header("Realtime")]
-    [SerializeField]
-    [Range(1, 5)]
-    private int RealTimeMinutes = 1;
-    [SerializeField]
-    [Range(0, 59)]
-    private int RealTimeSeconds = 0;
+    TextMeshProUGUI Text;
     [Header("Stop Action")]
     [SerializeField]
     private UnityEvent TimerReadyAction;
 
-    private Stopwatch timer = new Stopwatch();
-    private TimeSpan remainingTime;
+    private Stopwatch Timer = new Stopwatch();
+    private TimeSpan ClipDuration;
+    private TimeSpan RemainingTime;
 
     void Awake()
-        => remainingTime = new TimeSpan(0, RealTimeMinutes, RealTimeSeconds);
+    {
+        if (MusicSource == null)
+            MusicSource = GetComponent<AudioSource>();
+        ClipDuration = TimeSpan.FromSeconds(MusicSource.clip.length);
+        RemainingTime = ClipDuration;
+    }
 
     void Start()
-        => timer.Start();
+        => Timer.Start();
 
     void Update()
     {
-        TimeSpan actualTime = (timer.Elapsed * (UserTimerDuration / RealTimeMinutes)) + new TimeSpan(0, StartHour, 0);
+        TimeSpan actualTime = (Timer.Elapsed * (new TimeSpan(0, UserTimerDuration, 0) / ClipDuration)) + new TimeSpan(0, StartHour, 0);
         if (actualTime.Seconds % IntervalDisplay == 0)
-            text.text = (actualTime).ToString(@"mm\:ss");
+            if (Text != null)
+                Text.text = (actualTime).ToString(@"mm\:ss");
     }
 
 
     void FixedUpdate()
     {
-        if (timer.Elapsed >= remainingTime)
+        if (Timer.Elapsed >= RemainingTime)
         {
-            timer.Stop();
-            TimerReadyAction.Invoke();
+            Timer.Stop();
+            if (TimerReadyAction != null)
+                TimerReadyAction.Invoke();
         }
     }
 }
