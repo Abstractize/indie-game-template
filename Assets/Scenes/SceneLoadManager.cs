@@ -14,7 +14,8 @@ public enum Scenes
     STORY = 0,
     LOGIN = 1,
     GROUPS = 2,
-    DANCE = 3,
+    ROOM_INFO = 3,
+    DANCE = 4,
 }
 
 

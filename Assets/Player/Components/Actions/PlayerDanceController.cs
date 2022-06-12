@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,7 +12,7 @@ public partial class PlayerDanceController : MonoBehaviour, IPlayerDanceActions
             Movement = context.Get<Vector2>();
             Movement.Normalize();
 
-            GameObject value = Displayer.Notes
+            GameObject value = GameManager.Instance.Notes
                 .Where(item => item.GetComponent<Note>()
                 .NoteValue.ToVector2() == Movement).FirstOrDefault();
 
@@ -20,7 +21,7 @@ public partial class PlayerDanceController : MonoBehaviour, IPlayerDanceActions
 
             value.GetComponent<Note>().Pressed = true;
 
-            Displayer.Notes.Remove(value);
+            GameManager.Instance.Notes.Remove(value);
             Destroy(value);
         }
     }

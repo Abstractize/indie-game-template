@@ -1,19 +1,20 @@
+using System.Linq;
 using UnityEngine;
 using Photon.Pun;
 
 public class SpawnPlayers : MonoBehaviour
 {
     public GameObject playerPrefab;
+    [Header("Positions")]
+    [SerializeField] Transform[] Positions;
 
-    [SerializeField] float minX;
-    [SerializeField] float maxX;
-    [SerializeField] float minY;
-    [SerializeField] float maxY;
     // Start is called before the first frame update
     void Start()
     {
-        Vector2 randomPosition = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-        PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
+
+        GameObject player = PhotonNetwork
+            .Instantiate(playerPrefab.name, Positions[PhotonNetwork.LocalPlayer.ActorNumber].position, Quaternion.identity);
+        GameManager.Instance.Player = player.GetComponent<PlayerDanceController>();
     }
 
     // Update is called once per frame

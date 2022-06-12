@@ -13,6 +13,7 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
     {
         if (Instance != null && Instance != this)
         {
+            PhotonNetwork.AutomaticallySyncScene = true;
             Instance.SceneLoader = this.SceneLoader;
             Destroy(this.gameObject);
         }
@@ -24,7 +25,10 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
     }
 
     public void Login()
-        => PhotonNetwork.ConnectUsingSettings();
+    {
+        PhotonNetwork.NickName = Username;
+        PhotonNetwork.ConnectUsingSettings();
+    }
 
     public override void OnConnectedToMaster()
         => PhotonNetwork.JoinLobby();
