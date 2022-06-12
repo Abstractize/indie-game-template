@@ -1636,7 +1636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7c517193d505540aa87fd0f372184f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxFailures: 10
+  MaxFailures: 5
   NextScene:
     m_PersistentCalls:
       m_Calls:

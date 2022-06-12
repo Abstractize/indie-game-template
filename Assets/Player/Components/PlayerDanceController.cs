@@ -44,12 +44,18 @@ public partial class PlayerDanceController : MonoBehaviour
     public void OnLose()
     {
         Animations.SetTrigger("Lose");
-        GameManager.Instance.Die(this);
-        GameManager.Instance.End(true);
+        View.RPC("DeathRival", RpcTarget.All, this.ActorNumber);
     }
 
     public void OnWin()
     {
         Animations.SetTrigger("Win");
+    }
+
+    [PunRPC]
+    void DeathRival(int actorNumber)
+    {
+        GameManager.Instance.Die(actorNumber);
+        GameManager.Instance.End();
     }
 }

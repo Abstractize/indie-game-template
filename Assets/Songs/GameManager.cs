@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour
 
     public PlayerDanceController[] Players { get; set; } = new PlayerDanceController[4];
 
-    public void Die(PlayerDanceController player)
-        => Players[player.ActorNumber] = null;
+    public void Die(int actorNumber)
+        => Players[actorNumber] = null;
     void Awake()
     {
         Instance = this;
