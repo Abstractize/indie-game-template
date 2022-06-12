@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     public PlayerDanceController Player { get; set; }
     public int Failures { get; set; } = 0;
-    public List<GameObject> Notes { get; set; } = new List<GameObject>();
+    public GameObject Note { get; set; }
 
     public PlayerDanceController[] Players { get; set; } = new PlayerDanceController[4];
 
@@ -53,10 +53,8 @@ public class GameManager : MonoBehaviour
         }
         else
             NextScene.Invoke();
-
-
     }
     public void NoteGenerated(GameObject newNote)
-        => Notes.Add(newNote);
+        => Note = newNote;
 
 }

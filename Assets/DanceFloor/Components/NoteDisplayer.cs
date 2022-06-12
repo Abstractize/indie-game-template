@@ -67,5 +67,7 @@ public class NoteDisplayer : MonoBehaviour
         go.transform.SetParent(SpawnPoint);
 
         go.GetComponent<Note>().Initiate(newNote);
+
+        GameManager.Instance.NoteGenerated(go);
     }
 }

@@ -19,8 +19,9 @@ public class Note : MonoBehaviour
 
     void OnDestroy()
     {
-        if (!Pressed)
+        if (NoteValue.ToVector2() == Vector2.zero)
+            return;
+        else if (!Pressed)
             ++GameManager.Instance.Failures;
-        GameManager.Instance.Notes.Remove(this.gameObject);
     }
 }

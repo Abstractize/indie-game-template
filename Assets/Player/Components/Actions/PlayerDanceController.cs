@@ -12,19 +12,19 @@ public partial class PlayerDanceController : MonoBehaviour, IPlayerDanceActions
             Movement = context.Get<Vector2>();
             Movement.Normalize();
 
-            GameObject value = GameManager.Instance.Notes
-                .Where(item => item.GetComponent<Note>()
-                .NoteValue.ToVector2() == Movement).FirstOrDefault();
+            GameObject value = GameManager.Instance.Note;
 
             UnityEngine.Debug.Log(value);
 
             if (value == null)
                 return;
+            else if (value.GetComponent<Note>().NoteValue
+                .ToVector2() == Movement)
+            {
+                value.GetComponent<Note>().Pressed = true;
+                Destroy(value);
+            }
 
-            value.GetComponent<Note>().Pressed = true;
-
-            GameManager.Instance.Notes.Remove(value);
-            Destroy(value);
         }
     }
 }
