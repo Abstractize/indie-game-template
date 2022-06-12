@@ -6,19 +6,22 @@ public partial class PlayerDanceController : MonoBehaviour, IPlayerDanceActions
 {
     public void OnDance(InputValue context)
     {
-        Movement = context.Get<Vector2>();
-        Movement.Normalize();
+        if (View.IsMine)
+        {
+            Movement = context.Get<Vector2>();
+            Movement.Normalize();
 
-        GameObject value = Displayer.Notes
-            .Where(item => item.GetComponent<Note>()
-            .NoteValue.ToVector2() == Movement).FirstOrDefault();
+            GameObject value = Displayer.Notes
+                .Where(item => item.GetComponent<Note>()
+                .NoteValue.ToVector2() == Movement).FirstOrDefault();
 
-        if (value == null)
-            return;
+            if (value == null)
+                return;
 
-        value.GetComponent<Note>().Pressed = true;
+            value.GetComponent<Note>().Pressed = true;
 
-        Displayer.Notes.Remove(value);
-        Destroy(value);
+            Displayer.Notes.Remove(value);
+            Destroy(value);
+        }
     }
 }

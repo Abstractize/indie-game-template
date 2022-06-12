@@ -1,4 +1,5 @@
 using UnityEngine;
+using Photon.Pun;
 
 [RequireComponent(typeof(Animator))]
 public partial class PlayerDanceController : MonoBehaviour
@@ -7,6 +8,8 @@ public partial class PlayerDanceController : MonoBehaviour
     NoteDisplayer Displayer;
     [SerializeField]
     Animator Animations;
+    [SerializeField]
+    PhotonView View;
 
     public Vector2 Movement { get; set; } = Vector2.zero;
     private void Awake()
@@ -15,6 +18,8 @@ public partial class PlayerDanceController : MonoBehaviour
             FindObjectOfType<NoteDisplayer>();
         if (Animations == null)
             GetComponent<Animator>();
+        if (View == null)
+            GetComponent<PhotonView>();
 
         Animations.SetFloat("X", 0);
         Animations.SetFloat("Y", 0);

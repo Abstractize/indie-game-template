@@ -1,30 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using PlayFab;
-using PlayFab.ClientModels;
 using System;
+using Photon.Pun;
 
-public class MultiplayerManager : MonoBehaviour
+public class MultiplayerManager : MonoBehaviourPunCallbacks
 {
-    private void Start()
+    [SerializeField]
+    SceneLoadManager SceneLoader = null;
+
+    public static MultiplayerManager Instance { get; private set; }
+    public String Username { get; set; } = String.Empty;
+    private void Awake()
     {
-        var request = new LoginWithCustomIDRequest
+        if (Instance != null && Instance != this)
         {
-            CustomId = SystemInfo.deviceUniqueIdentifier,
-            CreateAccount = true
-        };
-
-        PlayFabClientAPI.LoginWithCustomID(request, OnSuccess, OnError);
+            Instance.SceneLoader = this.SceneLoader;
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(this.gameObject);
+            Instance = this;
+        }
     }
 
-    private void OnSuccess(LoginResult obj)
-    {
-        Debug.Log("Success!");
-    }
+    public void Login()
+        => PhotonNetwork.ConnectUsingSettings();
 
-    private void OnError(PlayFabError obj)
-    {
-        Debug.LogError("Error!");
-    }
+    public override void OnConnectedToMaster()
+        => PhotonNetwork.JoinLobby();
+
+    public override void OnJoinedLobby()
+        => SceneLoader.LoadScene();
 }
