@@ -1,6 +1,8 @@
-using System.Collections;
+using System.Diagnostics;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using Photon.Pun;
 using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
@@ -9,14 +11,27 @@ public class GameManager : MonoBehaviour
     [Header("Constants")]
     [SerializeField]
     int MaxFailures;
+    [Header("Actions")]
+    [SerializeField]
+    private UnityEvent NextScene;
 
     public PlayerDanceController Player { get; set; }
     public int Failures { get; set; } = 0;
     public List<GameObject> Notes { get; set; } = new List<GameObject>();
 
+    public PlayerDanceController[] Players { get; set; } = new PlayerDanceController[4];
+
+    [PunRPC]
+    public void Die(PlayerDanceController player)
+        => Players[player.ActorNumber] = null;
     void Awake()
     {
         Instance = this;
+    }
+
+    void Start()
+    {
+
     }
 
     void FixedUpdate()
@@ -24,7 +39,23 @@ public class GameManager : MonoBehaviour
         if (Failures > MaxFailures)
             Player.OnLose();
     }
+    public void End()
+    {
+        List<PlayerDanceController> PlayersAlive = Players.Where(value => value != null).ToList();
 
+        if (PlayersAlive.Count <= 1)
+        {
+            PhotonNetwork.AutomaticallySyncScene = false;
+            if (PlayersAlive[0]?.ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
+                PhotonNetwork.LoadLevel((int)Scenes.WIN);
+            else
+                PhotonNetwork.LoadLevel((int)Scenes.LOSE);
+        }
+        else
+            NextScene.Invoke();
+
+
+    }
     public void NoteGenerated(GameObject newNote)
         => Notes.Add(newNote);
 

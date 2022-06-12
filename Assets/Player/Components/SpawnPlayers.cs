@@ -11,7 +11,6 @@ public class SpawnPlayers : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         GameObject player = PhotonNetwork
             .Instantiate(playerPrefab.name, Positions[PhotonNetwork.LocalPlayer.ActorNumber].position, Quaternion.identity);
         GameManager.Instance.Player = player.GetComponent<PlayerDanceController>();

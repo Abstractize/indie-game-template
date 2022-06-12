@@ -16,6 +16,8 @@ public enum Scenes
     GROUPS = 2,
     ROOM_INFO = 3,
     DANCE = 4,
+    WIN = 5,
+    LOSE = 6,
 }
 
 
