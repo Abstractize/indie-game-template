@@ -52,15 +52,39 @@ jobs:
               with:
                   name: Build-${{ matrix.targetPlatform }}
                   path: build/${{ matrix.targetPlatform }}
-
-    close_pull_request_job:
-        if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    deploy:
+        needs: build_and_deploy_job
         runs-on: ubuntu-latest
-        name: Close Pull Request Job
         steps:
-            - name: Close Pull Request
-              id: closepullrequest
-              uses: Azure/static-web-apps-deploy@v1
+            - name: Checkout Repository
+              uses: actions/checkout@v2
               with:
-                  azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_YELLOW_RIVER_093795F10 }}
-                  action: "close"
+                  fetch-depth: 0
+
+            - name: Download StandaloneWindows64 Artifact
+              uses: actions/download-artifact@v2
+              with:
+                  name: Build-StandaloneWindows64
+                  path: build/StandaloneWindows64
+
+            - name: Create Release
+              id: create_release
+              uses: actions/create-release@v1
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  tag_name: ${{ github.ref }}
+                  release_name: Release ${{ github.ref }}
+                  draft: false
+                  prerelease: false
+
+            - name: Upload Release Asset
+              id: upload-release-asset
+              uses: actions/upload-release-asset@v1
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+                  asset_path: build/StandaloneWindows64
+                  asset_name: Build-StandaloneWindows64.zip
+                  asset_content_type: application/zip
