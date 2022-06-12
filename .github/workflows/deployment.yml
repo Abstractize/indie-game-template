@@ -54,6 +54,7 @@ jobs:
                   path: build/${{ matrix.targetPlatform }}
     deploy_release:
         needs: build_and_deploy_job
+        name: Deploy Release
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Repository
