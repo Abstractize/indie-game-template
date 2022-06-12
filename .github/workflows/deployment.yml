@@ -52,7 +52,9 @@ jobs:
               with:
                   name: Build-${{ matrix.targetPlatform }}
                   path: build/${{ matrix.targetPlatform }}
+
     deploy_release:
+        if: github.event_name != 'pull_request'
         needs: build_and_deploy_job
         name: Deploy Release
         runs-on: ubuntu-latest
@@ -70,9 +72,9 @@ jobs:
 
             - name: Zip Files
               run: |
-                  zip --junk-paths Build-StandaloneWindows64 build/StandaloneWindows64/*
+                  zip -r Build-StandaloneWindows64 build/StandaloneWindows64/*
 
-            - name: Create Release
+            - name: Create Release StandaloneWindows64 Artifact
               id: create_release
               uses: actions/create-release@v1
               env:
@@ -83,13 +85,13 @@ jobs:
                   draft: false
                   prerelease: false
 
-            - name: Upload Release Asset
+            - name: Upload Release StandaloneWindows64 Artifact Asset
               id: upload-release-asset
               uses: actions/upload-release-asset@v1
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                  upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+                  upload_url: ${{ steps.create_release.outputs.upload_url }}
                   asset_path: ./Build-StandaloneWindows64.zip
                   asset_name: Build-StandaloneWindows64.zip
                   asset_content_type: application/zip
