@@ -793,6 +793,155 @@ public partial class @IndieGameTemplate : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Dance"",
+            ""id"": ""56215704-ca51-4644-afb4-d8cefe73bd04"",
+            ""actions"": [
+                {
+                    ""name"": ""Dance"",
+                    ""type"": ""Value"",
+                    ""id"": ""e6e7470a-97bf-4d04-bb55-5df9ad5f9d3e"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7a2bc6e3-8973-47b1-919d-20ceb8053c51"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""cf95d1c3-f357-4b6e-83bc-7654fc9266c6"",
+                    ""path"": ""Dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dance"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""e141be98-35c2-456f-a1f7-0f5fb2046b4c"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""be1cf408-af28-4664-9396-ace2ac8e96e2"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""038262e7-3009-4a1c-a061-489a530ce89c"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""7652b3e3-aeca-4c67-8e83-60b08f8f6562"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""64eb4158-46dc-4c1e-a380-2496cec3f934"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""88bf934e-4e86-4816-9e09-0f5c1032612f"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""57b47b7e-eaef-42bc-bd2d-22639c4bc290"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""f084106d-2b30-421f-9081-fc3abeb1f46d"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7f16a1a-9efd-410e-8dc7-898192bd1553"",
+                    ""path"": ""<XRController>/{Primary2DAxis}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c879d8a6-bb67-48bf-93b4-9f19c6640751"",
+                    ""path"": ""<Joystick>/stick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -875,6 +1024,9 @@ public partial class @IndieGameTemplate : IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Dance
+        m_Dance = asset.FindActionMap("Dance", throwIfNotFound: true);
+        m_Dance_Dance = m_Dance.FindAction("Dance", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1084,6 +1236,39 @@ public partial class @IndieGameTemplate : IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Dance
+    private readonly InputActionMap m_Dance;
+    private IDanceActions m_DanceActionsCallbackInterface;
+    private readonly InputAction m_Dance_Dance;
+    public struct DanceActions
+    {
+        private @IndieGameTemplate m_Wrapper;
+        public DanceActions(@IndieGameTemplate wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Dance => m_Wrapper.m_Dance_Dance;
+        public InputActionMap Get() { return m_Wrapper.m_Dance; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DanceActions set) { return set.Get(); }
+        public void SetCallbacks(IDanceActions instance)
+        {
+            if (m_Wrapper.m_DanceActionsCallbackInterface != null)
+            {
+                @Dance.started -= m_Wrapper.m_DanceActionsCallbackInterface.OnDance;
+                @Dance.performed -= m_Wrapper.m_DanceActionsCallbackInterface.OnDance;
+                @Dance.canceled -= m_Wrapper.m_DanceActionsCallbackInterface.OnDance;
+            }
+            m_Wrapper.m_DanceActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Dance.started += instance.OnDance;
+                @Dance.performed += instance.OnDance;
+                @Dance.canceled += instance.OnDance;
+            }
+        }
+    }
+    public DanceActions @Dance => new DanceActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1147,5 +1332,9 @@ public partial class @IndieGameTemplate : IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IDanceActions
+    {
+        void OnDance(InputAction.CallbackContext context);
     }
 }
