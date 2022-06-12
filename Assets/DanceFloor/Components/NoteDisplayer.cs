@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class NoteDisplayer : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class NoteDisplayer : MonoBehaviour
     [Header("Constants")]
     [SerializeField]
     int MaxFailures;
+    [Header("End Actions")]
+    [SerializeField]
+    UnityEvent LoseFunction;
 
 
     public List<GameObject> Notes { get; set; } = new List<GameObject>();
@@ -29,7 +33,7 @@ public class NoteDisplayer : MonoBehaviour
     void FixedUpdate()
     {
         if (Failures > MaxFailures)
-            Debug.Log("Perdiste JAJA xd");
+            LoseFunction.Invoke();
 
     }
 
