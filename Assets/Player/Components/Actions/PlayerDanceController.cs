@@ -16,6 +16,8 @@ public partial class PlayerDanceController : MonoBehaviour, IPlayerDanceActions
                 .Where(item => item.GetComponent<Note>()
                 .NoteValue.ToVector2() == Movement).FirstOrDefault();
 
+            UnityEngine.Debug.Log(value);
+
             if (value == null)
                 return;
 
