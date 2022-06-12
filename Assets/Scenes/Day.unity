@@ -182,7 +182,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 9b39cb1646e8adf4badcc803eeda9146, type: 2}
   m_audioClip: {fileID: 8300000, guid: b5f4bfa71e587244ab6a20b056331842, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -294,7 +294,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a305f7f941b588e4b92ad545ab653e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  File: {fileID: 4900000, guid: 01e89627dea389d4a97bd899938d7151, type: 3}
+  Clips:
+  - {fileID: 11400000, guid: e1a35145f217da240abbd70e57f41890, type: 2}
+  - {fileID: 11400000, guid: 2cfd2d1157fd5b34c8be04087461dca5, type: 2}
+  - {fileID: 11400000, guid: 6b6e6d23848153a49b8c629af0fc637a, type: 2}
   MusicSource: {fileID: 276388455}
   AudioProcessor: {fileID: 276388458}
   TickEvent:

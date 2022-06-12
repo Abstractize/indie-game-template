@@ -4,6 +4,4 @@ using System.Collections.Generic;
 public class SongData
 {
     public List<SongNote> Notes;
-    public byte SignatureHi;
-    public byte SignatureLo;
 }

@@ -1,13 +1,15 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(AudioProcessor))]
 public class NotesGenerator : MonoBehaviour
 {
-    [Header("Sound Data")]
+    [Header("Clips")]
     [SerializeField]
-    private TextAsset File;
+    Clip[] Clips;
+    [Header("Sound Data")]
     [SerializeField]
     private AudioSource MusicSource;
     [SerializeField]
@@ -16,7 +18,7 @@ public class NotesGenerator : MonoBehaviour
     [SerializeField]
     private UnityEvent<SongNote> TickEvent;
 
-    private SongData Data;
+    private Queue<SongNote> Data;
 
     void Awake()
     {
@@ -26,13 +28,26 @@ public class NotesGenerator : MonoBehaviour
             AudioProcessor = GetComponent<AudioProcessor>();
 
         AudioProcessor.onBeat.AddListener(OnBeatDetected);
-        Data = JsonUtility.FromJson<SongData>(File.text);
+
+        Clip clip = Clips[UnityEngine.Random.Range(0, Clips.Length)];
+
+        MusicSource.clip = clip.AudioClip;
+
+        SongData json = JsonUtility.FromJson<SongData>(clip.DataFile.text);
+        Data = new Queue<SongNote>(json.Notes);
+
+        MusicSource.Play();
     }
 
     void OnBeatDetected()
     {
         var number = UnityEngine.Random.Range(0, 10);
-        if (number == 0)
-            TickEvent.Invoke(SongNote.RandomNote);
+        if (Data.Count <= 0)
+            if (!(number == 0))
+                return;
+            else
+                TickEvent.Invoke(SongNote.RandomNote);
+        else
+            TickEvent.Invoke(Data.Dequeue());
     }
 }
