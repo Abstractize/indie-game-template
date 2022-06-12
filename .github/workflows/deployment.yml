@@ -54,6 +54,7 @@ jobs:
                   path: build/${{ matrix.targetPlatform }}
 
     deploy_release:
+        if: github.event_name != 'pull_request'
         needs: build_and_deploy_job
         name: Deploy Release
         runs-on: ubuntu-latest
