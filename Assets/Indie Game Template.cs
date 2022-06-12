@@ -804,7 +804,7 @@ public partial class @IndieGameTemplate : IInputActionCollection2, IDisposable
                     ""id"": ""e6e7470a-97bf-4d04-bb55-5df9ad5f9d3e"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""initialStateCheck"": true
                 }
             ],

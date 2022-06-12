@@ -14,7 +14,9 @@ public partial class PlayerDanceController : MonoBehaviour
     [SerializeField]
     TextMesh UsernameDisplay;
 
-    public Vector2 Movement { get; set; } = Vector2.zero;
+    public int ActorNumber { get; private set; }
+
+    public Vector2 movement { get; set; } = Vector2.zero;
     private void Awake()
     {
         if (Animations == null)
@@ -28,14 +30,26 @@ public partial class PlayerDanceController : MonoBehaviour
         Animations.SetFloat("X", 0);
         Animations.SetFloat("Y", 0);
 
+        ActorNumber = View.Owner.ActorNumber;
+        GameManager.Instance.Players[ActorNumber] = this;
         UsernameDisplay.text = View.Owner.NickName;
     }
 
     void LateUpdate()
     {
-        Animations.SetFloat("X", Movement.x);
-        Animations.SetFloat("Y", Movement.y);
+        Animations.SetFloat("X", movement.x);
+        Animations.SetFloat("Y", movement.y);
     }
 
-    public void OnLose() => Animations.SetTrigger("Lose");
+    public void OnLose()
+    {
+        Animations.SetTrigger("Lose");
+        GameManager.Instance.Die(this);
+        GameManager.Instance.End(true);
+    }
+
+    public void OnWin()
+    {
+        Animations.SetTrigger("Win");
+    }
 }

@@ -42,12 +42,7 @@ public class NotesGenerator : MonoBehaviour
     void OnBeatDetected()
     {
         var number = UnityEngine.Random.Range(0, 10);
-        if (Data.Count <= 0)
-            if (!(number == 0))
-                return;
-            else
-                TickEvent.Invoke(SongNote.RandomNote);
-        else
-            TickEvent.Invoke(Data.Dequeue());
+        if (GameManager.Instance.Note == null)
+            TickEvent.Invoke(SongNote.RandomNote);
     }
 }

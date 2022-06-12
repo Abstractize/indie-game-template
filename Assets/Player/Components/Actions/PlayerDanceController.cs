@@ -1,5 +1,3 @@
-using System.Diagnostics;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,20 +7,23 @@ public partial class PlayerDanceController : MonoBehaviour, IPlayerDanceActions
     {
         if (View.IsMine)
         {
-            Movement = context.Get<Vector2>();
-            Movement.Normalize();
+            movement = context.Get<Vector2>();
+            movement.Normalize();
 
-            GameObject value = GameManager.Instance.Notes
-                .Where(item => item.GetComponent<Note>()
-                .NoteValue.ToVector2() == Movement).FirstOrDefault();
+            GameObject value = GameManager.Instance.Note;
 
             if (value == null)
                 return;
 
-            value.GetComponent<Note>().Pressed = true;
+            Vector2 noteVector = value.GetComponent<Note>().NoteValue
+                .ToVector2();
+            noteVector.Normalize();
+            if (noteVector == movement)
+            {
+                value.GetComponent<Note>().Pressed = true;
+                Destroy(value);
+            }
 
-            GameManager.Instance.Notes.Remove(value);
-            Destroy(value);
         }
     }
 }

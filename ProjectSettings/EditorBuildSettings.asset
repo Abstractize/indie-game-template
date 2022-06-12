@@ -12,12 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/LogIn.unity
     guid: 63809ae4eaac4a044a35ad1bd2189a34
   - enabled: 1
-    path: Assets/Scenes/Groups.unity
+    path: Assets/Scenes/Lobby.unity
     guid: 029154316b5918e4ca4793e83aae68c4
   - enabled: 1
     path: Assets/Scenes/RoomInfo.unity
     guid: 0a634a1833db83f4a976fcb3569f499e
   - enabled: 1
-    path: Assets/Scenes/Day.unity
+    path: Assets/Scenes/Dance.unity
     guid: 0e387029c873c67478380257cb125dac
+  - enabled: 1
+    path: Assets/Scenes/Win.unity
+    guid: 7970b2ed7fe52c04f8e177933d3e7098
+  - enabled: 1
+    path: Assets/Scenes/Lose.unity
+    guid: ba8ccacb98fcd4b4e91d42cc180ef9da
   m_configObjects: {}
