@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -21,7 +20,6 @@ public class GameManager : MonoBehaviour
 
     public PlayerDanceController[] Players { get; set; } = new PlayerDanceController[4];
 
-    [PunRPC]
     public void Die(PlayerDanceController player)
         => Players[player.ActorNumber] = null;
     void Awake()
@@ -39,7 +37,7 @@ public class GameManager : MonoBehaviour
         if (Failures > MaxFailures)
             Player.OnLose();
     }
-    public void End()
+    public void End(bool keepGoing = false)
     {
         List<PlayerDanceController> PlayersAlive = Players.Where(value => value != null).ToList();
 
@@ -51,6 +49,8 @@ public class GameManager : MonoBehaviour
             else
                 PhotonNetwork.LoadLevel((int)Scenes.LOSE);
         }
+        else if (keepGoing)
+            return;
         else
             NextScene.Invoke();
     }

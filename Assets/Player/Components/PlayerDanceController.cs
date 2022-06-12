@@ -16,7 +16,7 @@ public partial class PlayerDanceController : MonoBehaviour
 
     public int ActorNumber { get; private set; }
 
-    public Vector2 Movement { get; set; } = Vector2.zero;
+    public Vector2 movement { get; set; } = Vector2.zero;
     private void Awake()
     {
         if (Animations == null)
@@ -37,14 +37,15 @@ public partial class PlayerDanceController : MonoBehaviour
 
     void LateUpdate()
     {
-        Animations.SetFloat("X", Movement.x);
-        Animations.SetFloat("Y", Movement.y);
+        Animations.SetFloat("X", movement.x);
+        Animations.SetFloat("Y", movement.y);
     }
-    [PunRPC]
+
     public void OnLose()
     {
         Animations.SetTrigger("Lose");
-        View.RPC("Die", RpcTarget.All, this);
+        GameManager.Instance.Die(this);
+        GameManager.Instance.End(true);
     }
 
     public void OnWin()
