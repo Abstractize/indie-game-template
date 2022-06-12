@@ -3,8 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoadManager : MonoBehaviour
 {
-    public void LoadScene(int sceneIndex)
-        => SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
+    [SerializeField]
+    Scenes scene = Scenes.GROUPS;
+    public void LoadScene()
+        => SceneManager.LoadScene((int)scene, LoadSceneMode.Single);
+}
+
+public enum Scenes
+{
+    STORY = 0,
+    LOGIN = 1,
+    GROUPS = 2,
+    ROOM_INFO = 3,
+    DANCE = 4,
 }
 
 

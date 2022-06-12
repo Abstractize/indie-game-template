@@ -13,16 +13,13 @@ public class Note : MonoBehaviour
     SpriteRenderer Left;
     [SerializeField]
     SpriteRenderer Right;
-    [SerializeField]
-    public NoteDisplayer Displayer { get; set; }
 
     private bool Active = false;
     public SongNote NoteValue { get; set; }
     public Boolean Pressed { get; set; } = false;
 
-    public void Initiate(SongNote newNote, NoteDisplayer noteDisplayer)
+    public void Initiate(SongNote newNote)
     {
-        Displayer = noteDisplayer;
         NoteValue = newNote;
         Background.color = UnityEngine.Random.ColorHSV();
         if (newNote.Up != NoteType.NONE)
@@ -58,7 +55,7 @@ public class Note : MonoBehaviour
     void OnDestroy()
     {
         if (!Pressed)
-            ++this.Displayer.Failures;
-        this.Displayer.Notes.Remove(this.gameObject);
+            ++GameManager.Instance.Failures;
+        GameManager.Instance.Notes.Remove(this.gameObject);
     }
 }

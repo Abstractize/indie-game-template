@@ -1,35 +1,34 @@
 using UnityEngine;
+using Photon.Pun;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Animator))]
 public partial class PlayerDanceController : MonoBehaviour
 {
     [SerializeField]
-    NoteDisplayer Displayer;
-    [SerializeField]
     Animator Animations;
+    [SerializeField]
+    PhotonView View;
+    [SerializeField]
+    PlayerInput inputs;
+    [SerializeField]
+    TextMesh UsernameDisplay;
 
     public Vector2 Movement { get; set; } = Vector2.zero;
     private void Awake()
     {
-        if (Displayer == null)
-            FindObjectOfType<NoteDisplayer>();
         if (Animations == null)
             GetComponent<Animator>();
+        if (View == null)
+            GetComponent<PhotonView>();
+
+        if (!View.IsMine)
+            Destroy(inputs);
 
         Animations.SetFloat("X", 0);
         Animations.SetFloat("Y", 0);
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        UsernameDisplay.text = View.Owner.NickName;
     }
 
     void LateUpdate()
