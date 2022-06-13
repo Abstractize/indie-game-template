@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     [Header("Actions")]
     [SerializeField]
     private UnityEvent NextScene;
+    [Header("Global Objects")]
+    [SerializeField]
+    public Animator CanvasAnimator;
 
     public PlayerDanceController Player { get; set; }
     public int Failures { get; set; } = 0;
