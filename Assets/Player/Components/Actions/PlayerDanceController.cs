@@ -8,6 +8,8 @@ public partial class PlayerDanceController : MonoBehaviour, IPlayerDanceActions
     {
         if (View.IsMine)
         {
+            GameManager.Instance.CanvasAnimator.SetTrigger("Press");
+
             movement = context.Get<Vector2>();
             movement.Normalize();
 
